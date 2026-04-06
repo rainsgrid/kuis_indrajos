@@ -10,7 +10,7 @@
         .header-title { text-align: center; color: #0d6efd; font-size: 28px; font-weight: bold; margin-bottom: 10px; }
         .header-subtitle { text-align: center; color: #6c757d; font-size: 14px; margin-bottom: 30px; }
         .grid-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
-        .btn-outline { background-color: transparent; border: 1px solid #0d6efd; color: #0d6efd; padding: 15px; border-radius: 6px; cursor: pointer; font-size: 12px; text-align: center; font-weight: 500; transition: 0.2s; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .btn-outline { background-color: transparent; border: 1px solid #0d6efd; color: #0d6efd; padding: 15px; border-radius: 6px; cursor: pointer; font-size: 12px; text-align: left; font-weight: 500; transition: 0.2s; height: 100%; display: flex; align-items: center; }
         .btn-outline:hover { background-color: #f0f7ff; }
         .btn-solid { background-color: #0d6efd; color: white; border: none; padding: 15px; border-radius: 6px; cursor: pointer; font-size: 15px; font-weight: bold; width: 100%; text-align: center; transition: 0.2s; }
         .btn-solid:hover { background-color: #0b5ed7; }
@@ -29,30 +29,20 @@
         .option-item input { margin-right: 15px; margin-top: 3px; transform: scale(1.2); flex-shrink: 0; pointer-events: none; }
         .option-item.selected { border-color: #0d6efd; background-color: #f0f7ff; font-weight: 600; }
         .quiz-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; gap: 10px; }
-        
-        /* Gaya Review Baru */
-        .review-card { border: 1px solid #cce3fd; border-radius: 8px; padding: 15px; margin-bottom: 15px; background-color: #f8fbfd; text-align: left; scroll-margin-top: 20px;}
+        .review-card { border: 1px solid #cce3fd; border-radius: 8px; padding: 15px; margin-bottom: 15px; background-color: #f8fbfd; text-align: left;}
         .wrong-pg { border-color: #f8d7da; background-color: #fff5f5; }
-        .correct-pg { border-color: #d1e7dd; background-color: #f4fdf9; }
         .ans-user { padding: 10px; border-radius: 4px; font-size: 14px; margin-top: 5px; background: white; border: 1px solid #eee; }
         .ans-ref { background-color: #e8f4fd; padding: 10px; border-radius: 4px; font-size: 14px; color: #084298; margin-top: 5px; }
         .review-badge { background-color: #e9ecef; color: #495057; font-size: 11px; padding: 3px 8px; border-radius: 4px; float: right; }
-        
-        /* Grid Nomor Navigasi */
-        .nav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(35px, 1fr)); gap: 8px; margin-bottom: 30px; }
-        .nav-item { width: 35px; height: 35px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; color: white; cursor: pointer; transition: 0.2s; text-decoration: none; }
-        .nav-correct { background-color: #198754; }
-        .nav-wrong { background-color: #dc3545; }
-        .nav-essay { background-color: #6c757d; }
     </style>
 </head>
 <body>
 
 <div class="container" id="home-screen">
     <div class="header-title">SIMULASI UTS INDRAJOS 2026</div>
-    <div class="header-subtitle">OS3207 Penginderaan Jauh Oseanografi</div>
+    <div class="header-subtitle">OS2202 Ocean Remote Sensing</div>
     <div class="grid-menu" id="menu-container"></div>
-    <button class="btn-solid" id="btn-all-topics" onclick="startQuiz('Semua Topik')">Mulai Semua Topik (130 Soal)</button>
+    <button class="btn-solid" style="width: 100%; margin-top: 10px;" onclick="startQuiz('Semua Topik')">Mulai Semua Topik (102 Soal)</button>
 </div>
 
 <div class="container" id="quiz-screen" style="display: none;">
@@ -65,23 +55,17 @@
     <div id="answer-container"></div>
     <div class="quiz-footer">
         <button class="btn-prev" id="btn-prev" onclick="prevQuestion()">Sebelumnya</button>
-        <button class="btn-solid btn-green" id="btn-lihat-hasil" onclick="showResults()" style="display:none;">Lihat Hasil</button>
+        <button class="btn-solid btn-green" id="btn-lihat-hasil" onclick="showResults()">Lihat Hasil</button>
         <button class="btn-solid" id="btn-next" style="width: auto; padding: 12px 24px;" onclick="nextQuestion()">Selanjutnya</button>
     </div>
 </div>
 
 <div class="container" id="result-screen" style="display: none;">
     <div class="header-title" style="font-size: 24px;">Hasil Simulasi</div>
-    <div class="score-card" style="border: 1px solid #e9ecef; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+    <div class="score-card" style="border: 1px solid #e9ecef; border-radius: 8px; padding: 20px; margin-bottom: 30px;">
         <div style="display:flex; justify-content: space-between; margin-bottom: 10px;"><span>Topik:</span><span id="score-category-name">...</span></div>
         <div style="display:flex; justify-content: space-between; font-weight: bold; color: #198754; font-size: 18px;"><span>Total Skor PG:</span><span id="score-text-total">0/0</span></div>
     </div>
-    
-    <div id="navigation-box">
-        <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px; color: #666;">Navigasi Hasil (Klik nomor untuk cek):</div>
-        <div class="nav-grid" id="nav-grid"></div>
-    </div>
-
     <div id="review-container"></div>
     <button class="btn-solid" onclick="location.reload()" style="width: 100%; margin-top: 20px;">Kembali ke Menu Utama</button>
 </div>
@@ -270,12 +254,7 @@ function initMenu() {
 }
 
 function startQuiz(k) {
-    if (k === 'Semua Topik') {
-        soalAktif = [...databaseSoal];
-    } else {
-        soalAktif = databaseSoal.filter(s => s.kategori === k);
-    }
-    
+    soalAktif = k === 'Semua Topik' ? [...databaseSoal] : databaseSoal.filter(s => s.kategori === k);
     indeksSoal = 0; 
     jawabanUser = new Array(soalAktif.length).fill(""); 
     document.getElementById('home-screen').style.display = 'none';
@@ -302,8 +281,7 @@ function renderSoal() {
         txt.oninput = (e) => { jawabanUser[indeksSoal] = e.target.value; };
         container.appendChild(txt);
     } else {
-        const div = document.createElement('div'); 
-        div.className = 'options-list';
+        const div = document.createElement('div'); div.className = 'options-list';
         s.pilihan.forEach(o => {
             const lbl = document.createElement('label'); 
             lbl.className = 'option-item' + (jawabanUser[indeksSoal] === o ? ' selected' : '');
@@ -318,74 +296,32 @@ function renderSoal() {
     }
 
     document.getElementById('btn-prev').style.display = indeksSoal === 0 ? 'none' : 'block';
-    
-    if (indeksSoal === soalAktif.length - 1) {
-        document.getElementById('btn-next').style.display = 'none';
-        document.getElementById('btn-lihat-hasil').style.display = 'block';
-    } else {
-        document.getElementById('btn-next').style.display = 'block';
-        document.getElementById('btn-lihat-hasil').style.display = 'none';
-    }
+    document.getElementById('btn-next').style.display = indeksSoal === soalAktif.length - 1 ? 'none' : 'block';
     window.scrollTo(0, 0);
 }
 
-function nextQuestion() { 
-    if (indeksSoal < soalAktif.length - 1) { 
-        indeksSoal++; 
-        renderSoal(); 
-    } 
-}
-
-function prevQuestion() { 
-    if (indeksSoal > 0) { 
-        indeksSoal--; 
-        renderSoal(); 
-    } 
-}
+function nextQuestion() { if (indeksSoal < soalAktif.length - 1) { indeksSoal++; renderSoal(); } }
+function prevQuestion() { if (indeksSoal > 0) { indeksSoal--; renderSoal(); } }
 
 function showResults() {
     const belum = jawabanUser.filter(j => j === "").length;
-    if (belum > 0) {
-        if (!confirm(`Masih ada ${belum} soal belum diisi. Lihat hasil sekarang?`)) return;
+    if (indeksSoal < soalAktif.length - 1 && belum > 0) {
+        if (!confirm(`Masih ada ${belum} soal belum diisi. Lihat kunci jawaban sekarang?`)) return;
     }
 
     document.getElementById('quiz-screen').style.display = 'none';
     document.getElementById('result-screen').style.display = 'block';
     
     let skor = 0;
-    const rev = document.getElementById('review-container'); 
-    const nav = document.getElementById('nav-grid');
-    rev.innerHTML = '';
-    nav.innerHTML = '';
+    const rev = document.getElementById('review-container'); rev.innerHTML = '';
     
     soalAktif.forEach((s, i) => {
         const u = jawabanUser[i];
-        const cardId = `card-q-${i}`;
         const displayUser = u === "" ? "<span style='color:orange'>(Belum dikerjakan)</span>" : u;
-        const card = document.createElement('div'); 
-        card.className = 'review-card';
-        card.id = cardId;
-        
-        let statusClass = 'nav-essay';
-        let isCorrect = false;
-        
-        if (s.tipe === 'pg') {
-            isCorrect = (u === s.kunci_jawaban);
-            statusClass = isCorrect ? 'nav-correct' : 'nav-wrong';
-            if (isCorrect) {
-                skor++;
-                card.classList.add('correct-pg');
-            } else {
-                card.classList.add('wrong-pg');
-            }
-        }
-
-        // Navigasi Badge
-        const navItem = document.createElement('a');
-        navItem.className = `nav-item ${statusClass}`;
-        navItem.innerText = i + 1;
-        navItem.href = `#${cardId}`;
-        nav.appendChild(navItem);
+        const card = document.createElement('div'); card.className = 'review-card';
+        let isWrong = s.tipe === 'pg' && u !== s.kunci_jawaban;
+        if (isWrong) card.classList.add('wrong-pg');
+        if (s.tipe === 'pg' && u === s.kunci_jawaban) skor++;
 
         card.innerHTML = `
             <div class="review-q">
@@ -393,7 +329,7 @@ function showResults() {
                 <span class="review-badge">${s.tipe.toUpperCase()}</span>
             </div>
             <div style="font-size:12px; color:#666; margin-top:10px;">Jawaban Anda:</div>
-            <div class="ans-user">${displayUser} ${s.tipe === 'pg' ? (isCorrect ? '<span style="color:green; font-weight:bold"> (Benar)</span>' : '<span style="color:red; font-weight:bold"> (Salah)</span>') : ''}</div>
+            <div class="ans-user">${displayUser} ${isWrong && u !== "" ? '<span style="color:red; font-weight:bold"> (Salah)</span>' : ''}</div>
             <div style="font-size:12px; color:#666; margin-top:10px">Jawaban Benar / Referensi:</div>
             <div class="ans-ref">${s.kunci_jawaban}</div>
         `;
@@ -409,3 +345,4 @@ initMenu();
 </script>
 </body>
 </html>
+
