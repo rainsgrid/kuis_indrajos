@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulasi UTS Indrajos 2026</title>
+    <title>Simulasi UTS INDRAJOS 2026</title>
     <style>
         body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f8f9fa; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; color: #333; }
         .container { background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); width: 100%; max-width: 800px; padding: 40px; box-sizing: border-box; }
         .header-title { text-align: center; color: #0d6efd; font-size: 28px; font-weight: bold; margin-bottom: 10px; }
         .header-subtitle { text-align: center; color: #6c757d; font-size: 14px; margin-bottom: 30px; }
         .grid-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
-        .btn-outline { background-color: transparent; border: 1px solid #0d6efd; color: #0d6efd; padding: 15px; border-radius: 6px; cursor: pointer; font-size: 12px; text-align: center; font-weight: 500; transition: 0.2s; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .btn-outline { background-color: transparent; border: 1px solid #0d6efd; color: #0d6efd; padding: 15px; border-radius: 6px; cursor: pointer; font-size: 12px; text-align: left; font-weight: 500; transition: 0.2s; height: 100%; display: flex; align-items: center; }
         .btn-outline:hover { background-color: #f0f7ff; }
         .btn-solid { background-color: #0d6efd; color: white; border: none; padding: 15px; border-radius: 6px; cursor: pointer; font-size: 15px; font-weight: bold; width: 100%; text-align: center; transition: 0.2s; }
         .btn-solid:hover { background-color: #0b5ed7; }
@@ -42,7 +42,7 @@
     <div class="header-title">SIMULASI UTS INDRAJOS 2026</div>
     <div class="header-subtitle">OS3207 Penginderaan Jauh Oseanografi</div>
     <div class="grid-menu" id="menu-container"></div>
-    <button class="btn-solid" id="btn-all" onclick="startQuiz('Semua Topik')">Mulai Semua Topik</button>
+    <button class="btn-solid" id="btn-all-topics" onclick="startQuiz('Semua Topik')">Mulai Semua Topik (130 Soal)</button>
 </div>
 
 <div class="container" id="quiz-screen" style="display: none;">
@@ -64,7 +64,7 @@
     <div class="header-title" style="font-size: 24px;">Hasil Simulasi</div>
     <div class="score-card" style="border: 1px solid #e9ecef; border-radius: 8px; padding: 20px; margin-bottom: 30px;">
         <div style="display:flex; justify-content: space-between; margin-bottom: 10px;"><span>Topik:</span><span id="score-category-name">...</span></div>
-        <div style="display:flex; justify-content: space-between; font-weight: bold; color: #198754; font-size: 18px;"><span>Skor PG:</span><span id="score-text-total">0/0</span></div>
+        <div style="display:flex; justify-content: space-between; font-weight: bold; color: #198754; font-size: 18px;"><span>Total Skor PG:</span><span id="score-text-total">0/0</span></div>
     </div>
     <div id="review-container"></div>
     <button class="btn-solid" onclick="location.reload()" style="width: 100%; margin-top: 20px;">Kembali ke Menu Utama</button>
@@ -116,13 +116,13 @@ const databaseSoal = [
     { kategori: "Minggu 2 Review Oseanografi", tipe: "pg", pertanyaan: "Transpor massa air yang tegak lurus terhadap arah angin akibat efek Coriolis disebut transpor...", pilihan: ["A. Geostropik", "B. Ekman", "C. Langmuir", "D. Barotropik"], kunci_jawaban: "B. Ekman" },
     { kategori: "Minggu 2 Review Oseanografi", tipe: "pg", pertanyaan: "Warna air laut yang jernih (kebiruan) menunjukkan bahwa perairan tersebut memiliki konsentrasi...", pilihan: ["A. Klorofil yang tinggi", "B. Sedimen tersuspensi yang tinggi", "C. Klorofil dan partikel yang sangat rendah", "D. Nutrien yang melimpah"], kunci_jawaban: "C. Klorofil dan partikel yang sangat rendah" },
     { kategori: "Minggu 2 Review Oseanografi", tipe: "esai", pertanyaan: "Jelaskan hubungan antara suhu, salinitas, dan densitas air laut!", kunci_jawaban: "Densitas air laut akan meningkat jika suhu menurun dan/atau salinitas meningkat. Suhu memiliki pengaruh yang lebih dominan terhadap densitas di perairan tropis." },
-    { kategori: "Minggu 2 Review Oseanografi", tipe: "esai", pertanyaan: "Apa yang dimaksud dengan Termoklin dan mengapa penting dalam oseanografi?", kunci_jawaban: "Termoklin adalah lapisan di mana suhu turun drastis terhadap kedalaman. Penting karena berfungsi sebagai pembatas antara massa air permukaan yang hangat dan massa air dalam yang dingin." },
+    { kategori: "Minggu 2 Review Oseanografi", tipe: "esai", pertanyaan: "Apa yang dimaksud dengan Termoklin dan mengapa penting dalam oseanografi?", kunci_jawaban: "Termoklin adalah lapisan di mana suhu turun drastis terhadap kedalaman. Penting karena berfungsi sebagai pembatas antara massa air permukaan yang hangat and massa air dalam yang dingin." },
     { kategori: "Minggu 2 Review Oseanografi", tipe: "esai", pertanyaan: "Sebutkan 3 gaya eksternal utama yang menggerakkan arus laut!", kunci_jawaban: "1. Angin (arus permukaan), 2. Perbedaan densitas/Termohalin (arus dalam), 3. Gaya pasang surut (gravitasi bulan dan matahari)." },
     { kategori: "Minggu 2 Review Oseanografi", tipe: "esai", pertanyaan: "Jelaskan proses terjadinya upwelling pantai!", kunci_jawaban: "Terjadi ketika angin bertiup sejajar pantai dan menyebabkan transpor Ekman menjauhi pantai, sehingga massa air dalam yang dingin dan kaya nutrien naik ke permukaan untuk mengisi kekosongan tersebut." },
     { kategori: "Minggu 2 Review Oseanografi", tipe: "esai", pertanyaan: "Apa perbedaan antara zonasi pelagik dan bentik?", kunci_jawaban: "Zonasi pelagik merujuk pada seluruh kolom air, sedangkan bentik merujuk pada dasar laut atau organisme yang hidup di dasar laut." },
     { kategori: "Minggu 2 Review Oseanografi", tipe: "esai", pertanyaan: "Mengapa wilayah ekuator memiliki salinitas yang lebih rendah dibanding wilayah subtropis?", kunci_jawaban: "Karena wilayah ekuator memiliki curah hujan yang sangat tinggi (presipitasi > evaporasi), sehingga mengencerkan konsentrasi garam di permukaan." },
     { kategori: "Minggu 2 Review Oseanografi", tipe: "esai", pertanyaan: "Apa yang dimaksud dengan sirkulasi Termohalin?", kunci_jawaban: "Sirkulasi laut dalam skala global yang digerakkan oleh perbedaan densitas air laut akibat variasi suhu (termo) dan salinitas (halin)." },
-    { kategori: "Minggu 2 Review Oseanografi", tipe: "esai", pertanyaan: "Sebutkan komponen utama penyusun air laut!", kunci_jawaban: "Air (H2O) sekitar 96.5% dan garam-garam terlarut (klorida, natrium, sulfat, magnesium, kalsium, kalium) sekitar 3.5%." },
+    { kategori: "Minggu 2 Review Oseanografi", tipe: "esai", pertanyaan: "Sebutkan komponen utama penyusun air laut!", kunci_jawaban: "Air (H2O) sekitar 96.5% and garam-garam terlarut (klorida, natrium, sulfat, magnesium, kalsium, kalium) sekitar 3.5%." },
     { kategori: "Minggu 2 Review Oseanografi", tipe: "esai", pertanyaan: "Bagaimana pengaruh rotasi bumi (Coriolis) terhadap arah arus di Belahan Bumi Utara (BBU) dan Belahan Bumi Selatan (BBS)?", kunci_jawaban: "Di BBU, arus dibelokkan ke arah kanan dari arah gerakannya, sedangkan di BBS arus dibelokkan ke arah kiri." },
     { kategori: "Minggu 2 Review Oseanografi", tipe: "esai", pertanyaan: "Apa fungsi nutrien seperti Nitrat dan Fosfat bagi organisme di laut?", kunci_jawaban: "Nutrien berfungsi sebagai 'pupuk' yang dibutuhkan oleh fitoplankton untuk melakukan fotosintesis dan pertumbuhan." },
 
@@ -144,13 +144,13 @@ const databaseSoal = [
     { kategori: "Minggu 3 Satelit dan Sensor", tipe: "pg", pertanyaan: "Resolusi radiometrik berkaitan dengan kemampuan sensor dalam membedakan...", pilihan: ["A. Ukuran objek", "B. Waktu perekaman", "C. Intensitas energi (tingkat keabuan/bit)", "D. Panjang gelombang"], kunci_jawaban: "C. Intensitas energi (tingkat keabuan/bit)" },
     { kategori: "Minggu 3 Satelit dan Sensor", tipe: "esai", pertanyaan: "Sebutkan 3 jenis satelit berdasarkan fungsinya!", kunci_jawaban: "Satelit Astronomi, Satelit Komunikasi, Satelit Pengamat Bumi, Satelit Navigasi, atau Satelit Militer." },
     { kategori: "Minggu 3 Satelit dan Sensor", tipe: "esai", pertanyaan: "Jelaskan apa yang dimaksud dengan orbit Geostasioner!", kunci_jawaban: "Orbit satelit yang berada di atas ekuator dengan ketinggian sekitar 35.800 km, di mana periode orbitnya sama dengan periode rotasi bumi sehingga satelit tampak diam relatif terhadap permukaan bumi." },
-    { kategori: "Minggu 3 Satelit dan Sensor", tipe: "esai", pertanyaan: "Apa perbedaan antara sensor aktif dan sensor pasif?", kunci_jawaban: "Sensor aktif memiliki sumber energi sendiri untuk memancarkan sinyal dan merekam pantulannya (contoh: Radar), sedangkan sensor pasif merekam energi alami yang berasal dari matahari atau emisi objek itu sendiri." },
+    { kategori: "Minggu 3 Satelit dan Sensor", tipe: "esai", pertanyaan: "Apa perbedaan antara sensor aktif and sensor pasif?", kunci_jawaban: "Sensor aktif memiliki sumber energi sendiri untuk memancarkan sinyal dan merekam pantulannya (contoh: Radar), sedangkan sensor pasif merekam energi alami yang berasal dari matahari atau emisi objek itu sendiri." },
     { kategori: "Minggu 3 Satelit dan Sensor", tipe: "esai", pertanyaan: "Jelaskan definisi dari Resolusi Spasial!", kunci_jawaban: "Ukuran terkecil dari suatu objek yang masih dapat dideteksi atau dibedakan oleh sensor satelit; sering kali dinyatakan dalam ukuran piksel (misal: 30 meter)." },
     { kategori: "Minggu 3 Satelit dan Sensor", tipe: "esai", pertanyaan: "Apa yang dimaksud dengan Resolusi Temporal?", kunci_jawaban: "Selang waktu yang dibutuhkan oleh satelit untuk kembali merekam area yang sama di permukaan bumi." },
-    { kategori: "Minggu 3 Satelit dan Sensor", tipe: "esai", pertanyaan: "Jelaskan prinsip kerja sistem penentuan orbit DORIS!", kunci_jawaban: "DORIS bekerja berdasarkan prinsip Efek Doppler, di mana penerima di satelit mencatat pergeseran frekuensi dari sinyal yang dikirim oleh sekitar 50 beacon di bumi untuk menghitung kecepatan dan posisi satelit." },
+    { kategori: "Minggu 3 Satelit dan Sensor", tipe: "esai", pertanyaan: "Jelaskan prinsip kerja sistem penentuan orbit DORIS!", kunci_jawaban: "DORIS bekerja berdasarkan prinsip Efek Doppler, di mana penerima di satelit mencatat pergeseran frekuensi dari sinyal yang dikirim oleh sekitar 50 beacon di bumi untuk menghitung kecepatan and posisi satelit." },
     { kategori: "Minggu 3 Satelit dan Sensor", tipe: "esai", pertanyaan: "Mengapa orbit Sun-synchronous sangat penting untuk pemantauan lingkungan?", kunci_jawaban: "Karena memungkinkan satelit melewati area yang sama pada waktu lokal yang sama, sehingga kondisi pencahayaan matahari konsisten untuk perbandingan citra antar waktu." },
     { kategori: "Minggu 3 Satelit dan Sensor", tipe: "esai", pertanyaan: "Sebutkan contoh satelit navigasi selain GPS!", kunci_jawaban: "Glonass milik Rusia, Galileo milik Eropa, atau Beidou milik China." },
-    { kategori: "Minggu 3 Satelit dan Sensor", tipe: "esai", pertanyaan: "Apa yang dimaksud dengan Resolusi Spektral?", kunci_jawaban: "Kemampuan sensor dalam membedakan objek berdasarkan jumlah dan lebar saluran (band) panjang gelombang elektromagnetik yang digunakan." },
+    { kategori: "Minggu 3 Satelit dan Sensor", tipe: "esai", pertanyaan: "Apa yang dimaksud dengan Resolusi Spektral?", kunci_jawaban: "Kemampuan sensor dalam membedakan objek berdasarkan jumlah and lebar saluran (band) panjang gelombang elektromagnetik yang digunakan." },
     { kategori: "Minggu 3 Satelit dan Sensor", tipe: "esai", pertanyaan: "Apa kegunaan utama dari satelit komunikasi?", kunci_jawaban: "Tujuan telekomunikasi menggunakan radio pada frekuensi gelombang mikro, biasanya menggunakan orbit geosinkron atau geostasioner." },
 
     // === MINGGU 4: KATEGORI 1 (Electromagnetic Spectrum) ===
@@ -170,15 +170,15 @@ const databaseSoal = [
     { kategori: "Lec 4 Indrajos- electromagnetic spectrum", tipe: "pg", pertanyaan: "Warna merah pada cahaya tampak memiliki panjang gelombang sekitar...", pilihan: ["A. 0.4 μm", "B. 0.5 μm", "C. 0.7 μm", "D. 1.0 μm"], kunci_jawaban: "C. 0.7 μm" },
     { kategori: "Lec 4 Indrajos- electromagnetic spectrum", tipe: "pg", pertanyaan: "Atmosfer bumi menyerap sebagian besar radiasi matahari pada panjang gelombang tertentu, terutama oleh gas...", pilihan: ["A. Nitrogen", "B. Argon", "C. Uap air (H2O) dan CO2", "D. Helium"], kunci_jawaban: "C. Uap air (H2O) dan CO2" },
     { kategori: "Lec 4 Indrajos- electromagnetic spectrum", tipe: "esai", pertanyaan: "Jelaskan apa yang dimaksud dengan gelombang elektromagnetik!", kunci_jawaban: "Gelombang transversal yang merambat sebagai getaran dalam medan listrik dan medan magnet tanpa memerlukan medium perantara." },
-    { kategori: "Lec 4 Indrajos- electromagnetic spectrum", tipe: "esai", pertanyaan: "Sebutkan urutan spektrum elektromagnetik dari panjang gelombang besar ke kecil!", kunci_jawaban: "Radio, Microwave, Infrared, Visible Light, Ultraviolet, X-Rays, dan Gamma Rays." },
-    { kategori: "Lec 4 Indrajos- electromagnetic spectrum", tipe: "esai", pertanyaan: "Apa hubungan antara panjang gelombang (λ) dan frekuensi (f)?", kunci_jawaban: "Hubungannya berbanding terbalik; semakin besar panjang gelombang, maka frekuensinya semakin kecil (c = λ . f)." },
+    { kategori: "Lec 4 Indrajos- electromagnetic spectrum", tipe: "esai", pertanyaan: "Sebutkan urutan spektrum elektromagnetik dari panjang gelombang besar ke kecil!", kunci_jawaban: "Radio, Microwave, Infrared, Visible Light, Ultraviolet, X-Rays, and Gamma Rays." },
+    { kategori: "Lec 4 Indrajos- electromagnetic spectrum", tipe: "esai", pertanyaan: "Apa hubungan antara panjang gelombang (λ) and frekuensi (f)?", kunci_jawaban: "Hubungannya berbanding terbalik; semakin besar panjang gelombang, maka frekuensinya semakin kecil (c = λ . f)." },
     { kategori: "Lec 4 Indrajos- electromagnetic spectrum", tipe: "esai", pertanyaan: "Sebutkan dua sifat cahaya yang mendukung teori 'Dualisme Gelombang-Partikel'!", kunci_jawaban: "1) Cahaya sebagai gelombang (ditunjukkan dengan polarisasi). 2) Cahaya sebagai partikel/foton (ditunjukkan dengan efek fotolistrik)." },
     { kategori: "Lec 4 Indrajos- electromagnetic spectrum", tipe: "esai", pertanyaan: "Jelaskan prinsip Hukum Pergeseran Wien dalam penginderaan jauh!", kunci_jawaban: "Semakin tinggi suhu suatu benda, maka puncak panjang gelombang radiasi yang dipancarkannya akan bergeser ke arah panjang gelombang yang lebih pendek." },
     { kategori: "Lec 4 Indrajos- electromagnetic spectrum", tipe: "esai", pertanyaan: "Berapakah nilai kecepatan cahaya dalam ruang hampa?", kunci_jawaban: "Sekitar 300.000 kilometer per detik atau 2.99 x 10^8 meter per detik." },
     { kategori: "Lec 4 Indrajos- electromagnetic spectrum", tipe: "esai", pertanyaan: "Mengapa matahari merupakan sumber energi paling penting dalam penginderaan jauh terestrial?", kunci_jawaban: "Karena matahari menyediakan energi radiasi yang melimpah (reflected solar energy) pada rentang spektrum 0.3 - 3.0 μm yang digunakan oleh sensor pasif." },
     { kategori: "Lec 4 Indrajos- electromagnetic spectrum", tipe: "esai", pertanyaan: "Sebutkan rentang panjang gelombang untuk cahaya tampak (visible light)!", kunci_jawaban: "Antara 0.4 μm (ungu/violet) hingga 0.7 μm (merah)." },
     { kategori: "Lec 4 Indrajos- electromagnetic spectrum", tipe: "esai", pertanyaan: "Apa yang dimaksud dengan foton?", kunci_jawaban: "Partikel atau paket energi cahaya yang dapat melepaskan elektron dari suatu zat (efek fotolistrik)." },
-    { kategori: "Lec 4 Indrajos- electromagnetic spectrum", tipe: "esai", pertanyaan: "Gas apa saja di atmosfer yang paling banyak menyerap radiasi matahari pada spektrum inframerah?", kunci_jawaban: "Uap air (H2O), Karbondioksida (CO2), dan Ozon (O3)." },
+    { kategori: "Lec 4 Indrajos- electromagnetic spectrum", tipe: "esai", pertanyaan: "Gas apa saja di atmosfer yang paling banyak menyerap radiasi matahari pada spektrum inframerah?", kunci_jawaban: "Uap air (H2O), Karbondioksida (CO2), and Ozon (O3)." },
 
     // === MINGGU 4: KATEGORI 2 (EMRadiation) ===
     { kategori: "Lec 4 Indrajos EMRadiation", tipe: "pg", pertanyaan: "Dalam konsep transfer energi, proses perpindahan energi melalui gelombang elektromagnetik disebut...", pilihan: ["A. Konduksi", "B. Konveksi", "C. Radiasi", "D. Adveksi"], kunci_jawaban: "C. Radiasi" },
@@ -190,19 +190,19 @@ const databaseSoal = [
     { kategori: "Lec 4 Indrajos EMRadiation", tipe: "pg", pertanyaan: "Berapakah rentang panjang gelombang untuk saluran 'Blue Band' pada spektrum cahaya tampak?", pilihan: ["A. 0.45 - 0.52 μm", "B. 0.52 - 0.60 μm", "C. 0.60 - 0.70 μm", "D. 0.70 - 3.0 μm"], kunci_jawaban: "A. 0.45 - 0.52 μm" },
     { kategori: "Lec 4 Indrajos EMRadiation", tipe: "pg", pertanyaan: "Resolusi yang menunjukkan kemampuan sensor untuk membedakan perubahan terkecil dalam pantulan atau pancaran spektral disebut...", pilihan: ["A. Resolusi Spasial", "B. Resolusi Spektral", "C. Resolusi Radiometrik", "D. Resolusi Temporal"], kunci_jawaban: "C. Resolusi Radiometrik" },
     { kategori: "Lec 4 Indrajos EMRadiation", tipe: "pg", pertanyaan: "Semakin sempit saluran (band) yang dapat dideteksi oleh sensor satelit, maka...", pilihan: ["A. Resolusi spektralnya semakin rendah", "B. Resolusi spektralnya semakin tinggi", "C. Resolusi spasialnya semakin buruk", "D. Data digitalnya semakin kecil"], kunci_jawaban: "B. Resolusi spektralnya semakin tinggi" },
-    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "pg", pertanyaan: "Suhu pancaran (Radiant Temperature) suatu objek bergantung pada temperatur kinetik dan...", pilihan: ["A. Emisivitas spektral", "B. Kecepatan angin", "C. Kedalaman air", "D. Salinitas"], kunci_jawaban: "A. Emisivitas spektral" },
-    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "pg", pertanyaan: "Rentang panjang gelombang Thermal Infrared yang biasa digunakan untuk mengukur suhu adalah...", pilihan: ["A. 0.4 - 0.7 μm", "B. 3 - 5 μm dan 8 - 14 μm", "C. 1 mm - 1 m", "D. di atas 1 meter"], kunci_jawaban: "B. 3 - 5 μm dan 8 - 14 μm" },
+    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "pg", pertanyaan: "Suhu pancaran (Radiant Temperature) suatu objek bergantung pada temperatur kinetik and...", pilihan: ["A. Emisivitas spektral", "B. Kecepatan angin", "C. Kedalaman air", "D. Salinitas"], kunci_jawaban: "A. Emisivitas spektral" },
+    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "pg", pertanyaan: "Rentang panjang gelombang Thermal Infrared yang biasa digunakan untuk mengukur suhu adalah...", pilihan: ["A. 0.4 - 0.7 μm", "B. 3 - 5 μm and 8 - 14 μm", "C. 1 mm - 1 m", "D. di atas 1 meter"], kunci_jawaban: "B. 3 - 5 μm and 8 - 14 μm" },
     { kategori: "Lec 4 Indrajos EMRadiation", tipe: "pg", pertanyaan: "Sebuah sensor dengan resolusi 8 bit memiliki tingkat kuantisasi sebanyak...", pilihan: ["A. 128 level", "B. 256 level", "C. 512 level", "D. 1024 level"], kunci_jawaban: "B. 256 level" },
     { kategori: "Lec 4 Indrajos EMRadiation", tipe: "pg", pertanyaan: "Berapakah nilai kecepatan cahaya (c) dalam ruang hampa yang digunakan dalam prinsip EMR?", pilihan: ["A. 3.0 x 10^5 m/s", "B. 3.0 x 10^8 m/s", "C. 3.0 x 10^10 m/s", "D. 9.8 x 10^8 m/s"], kunci_jawaban: "B. 3.0 x 10^8 m/s" },
     { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Jelaskan apa yang dimaksud dengan Emisivitas Spektral!", kunci_jawaban: "Rasio antara energi yang dipancarkan oleh suatu objek nyata dengan energi yang dipancarkan oleh benda hitam (blackbody) pada suhu yang sama." },
-    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Sebutkan 3 jenis resolusi utama dalam penginderaan jauh yang dibahas dalam materi ini!", kunci_jawaban: "Resolusi Spektral, Resolusi Radiometrik, dan Resolusi Temporal." },
-    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Apa perbedaan antara suhu kinetik dan suhu pancaran (radiant temperature)?", kunci_jawaban: "Suhu kinetik adalah energi internal molekul yang diukur dengan termometer kontak, sedangkan suhu pancaran adalah energi yang dipancarkan objek dan dideteksi oleh sensor jarak jauh." },
-    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Jelaskan prinsip kerja sensor aktif dalam penginderaan jauh!", kunci_jawaban: "Sensor aktif memancarkan sinyal energinya sendiri ke arah objek, lalu menangkap dan mengukur energi yang dipantulkan kembali dari objek tersebut (contoh: Radar)." },
-    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Sebutkan rentang panjang gelombang untuk cahaya tampak (Visible Range) beserta band-band warnanya!", kunci_jawaban: "Rentang 0.4 - 0.7 μm, terdiri dari Blue band (0.45-0.52 μm), Green band (0.52-0.60 μm), dan Red band (0.60-0.70 μm)." },
+    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Sebutkan 3 jenis resolusi utama dalam penginderaan jauh yang dibahas dalam materi ini!", kunci_jawaban: "Resolusi Spektral, Resolusi Radiometrik, and Resolusi Temporal." },
+    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Apa perbedaan antara suhu kinetik and suhu pancaran (radiant temperature)?", kunci_jawaban: "Suhu kinetik adalah energi internal molekul yang diukur dengan termometer kontak, sedangkan suhu pancaran adalah energi yang dipancarkan objek and dideteksi oleh sensor jarak jauh." },
+    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Jelaskan prinsip kerja sensor aktif dalam penginderaan jauh!", kunci_jawaban: "Sensor aktif memancarkan sinyal energinya sendiri ke arah objek, lalu menangkap and mengukur energi yang dipantulkan kembali dari objek tersebut (contoh: Radar)." },
+    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Sebutkan rentang panjang gelombang untuk cahaya tampak (Visible Range) beserta band-band warnanya!", kunci_jawaban: "Rentang 0.4 - 0.7 μm, terdiri dari Blue band (0.45-0.52 μm), Green band (0.52-0.60 μm), and Red band (0.60-0.70 μm)." },
     { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Mengapa resolusi radiometrik 8 bit dianggap kurang sensitif dibanding 11 bit?", kunci_jawaban: "Karena 8 bit hanya memiliki 256 tingkat kecerahan, sementara bit yang lebih tinggi memiliki ribuan tingkat, sehingga mampu membedakan perubahan pantulan objek yang jauh lebih halus." },
-    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Apa hubungan antara panjang gelombang dan frekuensi dalam radiasi elektromagnetik?", kunci_jawaban: "Keduanya berbanding terbalik; produk dari panjang gelombang dan frekuensi adalah konstan, yaitu kecepatan cahaya (c = v * λ)." },
-    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Jelaskan definisi Resolusi Spektral!", kunci_jawaban: "Kemampuan sensor satelit untuk mendeteksi interval panjang gelombang yang halus, merujuk pada jumlah dan lebar saluran (band) spektral yang dimiliki sensor." },
-    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Sebutkan faktor-faktor yang mempengaruhi resolusi temporal suatu sensor!", kunci_jawaban: "Kemampuan satelit/sensor, tumpang tindih sapuan (swath overlap), dan posisi lintang (latitude) daerah yang diamati." },
+    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Apa hubungan antara panjang gelombang and frekuensi dalam radiasi elektromagnetik?", kunci_jawaban: "Keduanya berbanding terbalik; produk dari panjang gelombang and frekuensi adalah konstan, yaitu kecepatan cahaya (c = v * λ)." },
+    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Jelaskan definisi Resolusi Spektral!", kunci_jawaban: "Kemampuan sensor satelit untuk mendeteksi interval panjang gelombang yang halus, merujuk pada jumlah and lebar saluran (band) spektral yang dimiliki sensor." },
+    { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Sebutkan faktor-faktor yang mempengaruhi resolusi temporal suatu sensor!", kunci_jawaban: "Kemampuan satelit/sensor, tumpang tindih sapuan (swath overlap), and posisi lintang (latitude) daerah yang diamati." },
     { kategori: "Lec 4 Indrajos EMRadiation", tipe: "esai", pertanyaan: "Apa yang dimaksud dengan Quanta atau Foton menurut Hukum Planck?", kunci_jawaban: "Paket-paket energi diskrit yang dilepaskan sebagai radiasi elektromagnetik, di mana energi foton berbanding lurus dengan frekuensinya." },
 
     // === MINGGU 5: REMOTE SENSING OF THE SEA ===
@@ -213,28 +213,29 @@ const databaseSoal = [
     { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Alat yang digunakan untuk mengukur suhu permukaan laut (SST) dari satelit adalah...", pilihan: ["A. Barometer satelit", "B. Altimeter satelit", "C. Infrared scanning radiometers", "D. Seismometer"], kunci_jawaban: "C. Infrared scanning radiometers" },
     { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Satelit Altimetri digunakan secara khusus untuk mengukur...", pilihan: ["A. Kecerahan air laut.", "B. Topografi permukaan laut (sea surface topography).", "C. Kandungan oksigen terlarut.", "D. Arah angin lokal."], kunci_jawaban: "B. Topografi permukaan laut (sea surface topography)." },
     { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Manakah satelit berikut yang merupakan satelit altimetri penting dalam sejarah oseanografi?", pilihan: ["A. Landsat 7", "B. TOPEX/Poseidon", "C. Ikonos", "D. Quickbird"], kunci_jawaban: "B. TOPEX/Poseidon" },
-    { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Prinsip kerja radar altimetri adalah dengan mengukur...", pilihan: ["A. Intensitas cahaya matahari yang dipantulkan laut.", "B. Waktu tempuh pulsa gelombang mikro dari satelit ke permukaan laut dan kembali lagi.", "C. Perubahan warna air akibat sedimen.", "D. Suhu air menggunakan sensor termal."], kunci_jawaban: "B. Waktu tempuh pulsa gelombang mikro dari satelit ke permukaan laut dan kembali lagi." },
+    { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Prinsip kerja radar altimetri adalah dengan mengukur...", pilihan: ["A. Intensitas cahaya matahari yang dipantulkan laut.", "B. Waktu tempuh pulsa gelombang mikro dari satelit ke permukaan laut and kembali lagi.", "C. Perubahan warna air akibat sedimen.", "D. Suhu air menggunakan sensor termal."], kunci_jawaban: "B. Waktu tempuh pulsa gelombang mikro dari satelit ke permukaan laut and kembali lagi." },
     { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Apa kepanjangan dari SAR yang memberikan resolusi citra radar sangat tinggi?", pilihan: ["A. Surface Active Radar", "B. Synthetic Aperture Radar", "C. Speed Analysis Radar", "D. Satellite Air Radio"], kunci_jawaban: "B. Synthetic Aperture Radar" },
     { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Citra SAR (Synthetic Aperture Radar) sangat berguna untuk menganalisis fenomena permukaan laut seperti...", pilihan: ["A. Kedalaman lapisan termoklin.", "B. Tumpahan minyak (oil slicks) and lapisan es.", "C. Konsentrasi nutrien fosfat.", "D. Migrasi ikan paus di laut dalam."], kunci_jawaban: "B. Tumpahan minyak (oil slicks) and lapisan es." },
     { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Data Sea Surface Temperature (SST) dari satelit sangat sensitif terhadap gangguan atmosfer, sehingga diperlukan...", pilihan: ["A. Peningkatan kecepatan satelit.", "B. Koreksi atmosfer.", "C. Pengubahan orbit satelit.", "D. Pengurangan jumlah bit data."], kunci_jawaban: "B. Koreksi atmosfer." },
-    { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Warna laut yang terekam sensor satelit dipengaruhi oleh proses fisika cahaya, yaitu...", pilihan: ["A. Konduksi dan konveksi.", "B. Penyerapan (absorption) and hamburan (scattering).", "C. Polarisasi dan interferensi.", "D. Difraksi dan refraksi."], kunci_jawaban: "B. Penyerapan (absorption) and hamburan (scattering)." },
+    { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Warna laut yang terekam sensor satelit dipengaruhi oleh proses fisika cahaya, yaitu...", pilihan: ["A. Konduksi and konveksi.", "B. Penyerapan (absorption) and hamburan (scattering).", "C. Polarisasi and interferensi.", "D. Difraksi and refraksi."], kunci_jawaban: "B. Penyerapan (absorption) and hamburan (scattering)." },
     { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Substansi apa di dalam laut yang paling dominan mempengaruhi warna air pada spektrum cahaya tampak?", pilihan: ["A. Gelembung udara.", "B. Fitoplankton (klorofil).", "C. Pasir dasar laut.", "D. Logam berat."], kunci_jawaban: "B. Fitoplankton (klorofil)." },
     { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Koreksi atmosfer sangat krusial dalam algoritma 'Ocean Color' karena sekitar berapa persen sinyal yang diterima satelit berasal dari atmosfer?", pilihan: ["A. 10-20%", "B. 40-50%", "C. 80-90%", "D. 100%"], kunci_jawaban: "C. 80-90%" },
     { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Satelit mana yang membawa sensor CZCS (Coastal Zone Color Scanner) untuk pengamatan warna laut?", pilihan: ["A. Nimbus-7", "B. Jason-1", "C. ERS-1", "D. NOAA-14"], kunci_jawaban: "A. Nimbus-7" },
     { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Dalam interpretasi citra radar, permukaan laut yang kasar akan tampak...", pilihan: ["A. Lebih gelap karena menyerap radar.", "B. Lebih terang karena hamburan balik (backscatter) yang kuat.", "C. Transparan karena menembus air.", "D. Berwarna merah karena suhu tinggi."], kunci_jawaban: "B. Lebih terang karena hamburan balik (backscatter) yang kuat." },
     { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Fenomena pusaran air laut berskala menengah yang dapat dideteksi oleh gambar SAR disebut...", pilihan: ["A. Tsunami", "B. Eddies", "C. El Nino", "D. Upwelling"], kunci_jawaban: "B. Eddies" },
-    { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Satelit ERS 1 dan ERS 2 memiliki sensor radar yang digunakan untuk memantau...", pilihan: ["A. Salinitas global.", "B. Es laut dan kekasaran permukaan.", "C. Kedalaman termoklin.", "D. Konsentrasi nutrien."], kunci_jawaban: "B. Es laut dan kekasaran permukaan." },
+    { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Satelit ERS 1 and ERS 2 memiliki sensor radar yang digunakan untuk memantau...", pilihan: ["A. Salinitas global.", "B. Es laut and kekasaran permukaan.", "C. Kedalaman termoklin.", "D. Konsentrasi nutrien."], kunci_jawaban: "B. Es laut and kekasaran permukaan." },
     { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Passive Microwave Radiometers dapat digunakan untuk memantau parameter laut tanpa terganggu oleh...", pilihan: ["A. Rotasi bumi.", "B. Tutupan awan.", "C. Arus bawah.", "D. Sinar matahari."], kunci_jawaban: "B. Tutupan awan." },
     { kategori: "Materi Remote Sensing of the Sea", tipe: "pg", pertanyaan: "Teknik 'Ground Truth' atau verifikasi lapangan tetap diperlukan dalam penginderaan jauh untuk...", pilihan: ["A. Mengganti satelit yang rusak.", "B. Melakukan sampling parameter oseanografi guna validasi data satelit.", "C. Menentukan koordinat matahari.", "D. Mengurangi biaya operasional satelit."], kunci_jawaban: "B. Melakukan sampling parameter oseanografi guna validasi data satelit." },
     { kategori: "Materi Remote Sensing of the Sea", tipe: "esai", pertanyaan: "Sebutkan dua alasan mengapa penginderaan jauh lebih baik daripada metode oseanografi konvensional!", kunci_jawaban: "1. Pandangan Sinoptik (mengumpulkan informasi jauh lebih besar/cepat), 2. Mampu menjangkau wilayah luas Samudra Dunia yang sulit dijangkau pengamatan lapangan." },
-    { kategori: "Materi Remote Sensing of the Sea", tipe: "esai", pertanyaan: "Sebutkan dua masalah utama dalam aplikasi penginderaan jauh laut!", kunci_jawaban: "1. Parameter terukur tidak dapat secara langsung dikaitkan dengan karakteristik oseanografi tradisional, 2. Beberapa sensor (warna laut & IR) sangat sensitif terhadap kondisi meteorologi (awan)." },
-    { kategori: "Materi Remote Sensing of the Sea", tipe: "esai", pertanyaan: "Jelaskan cakupan utama kegiatan penginderaan jauh di laut!", kunci_jawaban: "Meliputi kalibrasi sensor, koreksi atmosfer, penentuan posisi objek, dan sampling parameter oseanografi untuk verifikasi data (sea-truth)." },
+    { kategori: "Materi Remote Sensing of the Sea", tipe: "esai", pertanyaan: "Sebutkan dua masalah utama dalam aplikasi penginderaan jauh laut!", kunci_jawaban: "1. Parameter terukur tidak dapat secara langsung dikaitkan dengan karakteristik oseanografi tradisional, 2. Beberapa pengamatan satelit (warna laut & IR) sangat sensitif terhadap kondisi meteorologi (awan)." },
+    { kategori: "Materi Remote Sensing of the Sea", tipe: "esai", pertanyaan: "Jelaskan cakupan utama kegiatan penginderaan jauh di laut!", kunci_jawaban: "Meliputi kalibrasi sensor, koreksi atmosfer, penentuan posisi objek, and sampling parameter oseanografi untuk verifikasi data (sea-truth)." },
     { kategori: "Materi Remote Sensing of the Sea", tipe: "esai", pertanyaan: "Sebutkan 5 aplikasi utama penginderaan jauh satelit dalam oseanografi!", kunci_jawaban: "1. Ocean color sensors, 2. SST dari infrared scanning radiometers, 3. Passive microwave radiometers, 4. Satelit altimetri, 5. Active microwave (SAR)." },
-    { kategori: "Materi Remote Sensing of the Sea", tipe: "esai", pertanyaan: "Apa yang dimaksud dengan 'Ocean Color' dalam konteks penginderaan jauh?", kunci_jawaban: "Warna laut yang ditentukan oleh interaksi penyerapan dan hamburan cahaya tampak oleh substansi dalam air, terutama fitoplankton/klorofil." },
+    { kategori: "Materi Remote Sensing of the Sea", tipe: "esai", pertanyaan: "Apa yang dimaksud dengan 'Ocean Color' dalam konteks penginderaan jauh?", kunci_jawaban: "Warna laut yang ditentukan oleh interaksi penyerapan and hamburan cahaya tampak oleh substansi dalam air, terutama fitoplankton/klorofil." },
     { kategori: "Materi Remote Sensing of the Sea", tipe: "esai", pertanyaan: "Bagaimana cara kerja satelit altimetri dalam menentukan ketinggian permukaan laut?", kunci_jawaban: "Satelit memancarkan pulsa gelombang mikro ke arah permukaan laut, lalu mengukur waktu tempuh pantulan tersebut kembali ke satelit." },
+    { kategori: "Materi Remote Sensing of the Sea", tipe: "esai", pertanyaan: "Sebutkan minimal 3 satelit penting yang digunakan untuk aplikasi altimetri!", kunci_jawaban: "ERS 1, ERS 2, TOPEX/Poseidon, and Jason 1." },
     { kategori: "Materi Remote Sensing of the Sea", tipe: "esai", pertanyaan: "Apa keunggulan teknologi SAR (Synthetic Aperture Radar) dibandingkan radar biasa?", kunci_jawaban: "Dapat menghasilkan resolusi citra yang sangat tinggi melalui analisis komprehensif kontribusi sinyal dari setiap titik pengamatan." },
-    { kategori: "Materi Remote Sensing of the Sea", tipe: "esai", pertanyaan: "Fenomena apa saja yang dapat dianalisis menggunakan gambar SAR di permukaan laut?", kunci_jawaban: "Pusaran air (eddies) skala kecil dan mesoskala, aliran sungai (river plumes), tumpahan minyak (oil slicks), dan lapisan es." },
-    { kategori: "Materi Remote Sensing of the Sea", tipe: "esai", pertanyaan: "Mengapa verifikasi 'Sea-Truth' atau 'Ground Truth' sangat penting?", kunci_jawaban: "Untuk memvalidasi dan melakukan sampling parameter oseanografi secara fisik sehingga data yang dihasilkan satelit terbukti akurat sesuai kondisi nyata." }
+    { kategori: "Materi Remote Sensing of the Sea", tipe: "esai", pertanyaan: "Fenomena apa saja yang dapat dianalisis menggunakan gambar SAR di permukaan laut?", kunci_jawaban: "Pusaran air (eddies) skala kecil and mesoskala, aliran sungai (river plumes), tumpahan minyak (oil slicks), and lapisan es." },
+    { kategori: "Materi Remote Sensing of the Sea", tipe: "esai", pertanyaan: "Mengapa verifikasi 'Sea-Truth' atau 'Ground Truth' sangat penting?", kunci_jawaban: "Untuk memvalidasi and melakukan sampling parameter oseanografi secara fisik sehingga data yang dihasilkan satelit terbukti akurat sesuai kondisi nyata." }
 ];
 
 let soalAktif = [], indeksSoal = 0, jawabanUser = [];
@@ -253,7 +254,12 @@ function initMenu() {
 }
 
 function startQuiz(k) {
-    soalAktif = k === 'Semua Topik' ? [...databaseSoal] : databaseSoal.filter(s => s.kategori === k);
+    if (k === 'Semua Topik') {
+        soalAktif = [...databaseSoal];
+    } else {
+        soalAktif = databaseSoal.filter(s => s.kategori === k);
+    }
+    
     indeksSoal = 0; 
     jawabanUser = new Array(soalAktif.length).fill(""); 
     document.getElementById('home-screen').style.display = 'none';
@@ -280,7 +286,8 @@ function renderSoal() {
         txt.oninput = (e) => { jawabanUser[indeksSoal] = e.target.value; };
         container.appendChild(txt);
     } else {
-        const div = document.createElement('div'); div.className = 'options-list';
+        const div = document.createElement('div'); 
+        div.className = 'options-list';
         s.pilihan.forEach(o => {
             const lbl = document.createElement('label'); 
             lbl.className = 'option-item' + (jawabanUser[indeksSoal] === o ? ' selected' : '');
@@ -296,7 +303,7 @@ function renderSoal() {
 
     document.getElementById('btn-prev').style.display = indeksSoal === 0 ? 'none' : 'block';
     
-    // Perbaikan Logika Tombol
+    // Logika tombol Next vs Lihat Hasil
     if (indeksSoal === soalAktif.length - 1) {
         document.getElementById('btn-next').style.display = 'none';
         document.getElementById('btn-lihat-hasil').style.display = 'block';
@@ -307,28 +314,44 @@ function renderSoal() {
     window.scrollTo(0, 0);
 }
 
-function nextQuestion() { if (indeksSoal < soalAktif.length - 1) { indeksSoal++; renderSoal(); } }
-function prevQuestion() { if (indeksSoal > 0) { indeksSoal--; renderSoal(); } }
+function nextQuestion() { 
+    if (indeksSoal < soalAktif.length - 1) { 
+        indeksSoal++; 
+        renderSoal(); 
+    } 
+}
+
+function prevQuestion() { 
+    if (indeksSoal > 0) { 
+        indeksSoal--; 
+        renderSoal(); 
+    } 
+}
 
 function showResults() {
     const belum = jawabanUser.filter(j => j === "").length;
     if (belum > 0) {
-        if (!confirm(`Masih ada ${belum} soal belum diisi. Lihat kunci jawaban sekarang?`)) return;
+        if (!confirm(`Masih ada ${belum} soal belum diisi. Lihat hasil sekarang?`)) return;
     }
 
     document.getElementById('quiz-screen').style.display = 'none';
     document.getElementById('result-screen').style.display = 'block';
     
     let skor = 0;
-    const rev = document.getElementById('review-container'); rev.innerHTML = '';
+    const rev = document.getElementById('review-container'); 
+    rev.innerHTML = '';
     
     soalAktif.forEach((s, i) => {
         const u = jawabanUser[i];
         const displayUser = u === "" ? "<span style='color:orange'>(Belum dikerjakan)</span>" : u;
-        const card = document.createElement('div'); card.className = 'review-card';
-        let isWrong = s.tipe === 'pg' && u !== s.kunci_jawaban;
+        const card = document.createElement('div'); 
+        card.className = 'review-card';
+        
+        let isCorrect = (s.tipe === 'pg' && u === s.kunci_jawaban);
+        let isWrong = (s.tipe === 'pg' && u !== s.kunci_jawaban && u !== "");
+        
         if (isWrong) card.classList.add('wrong-pg');
-        if (s.tipe === 'pg' && u === s.kunci_jawaban) skor++;
+        if (isCorrect) skor++;
 
         card.innerHTML = `
             <div class="review-q">
@@ -336,7 +359,7 @@ function showResults() {
                 <span class="review-badge">${s.tipe.toUpperCase()}</span>
             </div>
             <div style="font-size:12px; color:#666; margin-top:10px;">Jawaban Anda:</div>
-            <div class="ans-user">${displayUser} ${isWrong && u !== "" ? '<span style="color:red; font-weight:bold"> (Salah)</span>' : ''}</div>
+            <div class="ans-user">${displayUser} ${isWrong ? '<span style="color:red; font-weight:bold"> (Salah)</span>' : ''} ${isCorrect ? '<span style="color:green; font-weight:bold"> (Benar)</span>' : ''}</div>
             <div style="font-size:12px; color:#666; margin-top:10px">Jawaban Benar / Referensi:</div>
             <div class="ans-ref">${s.kunci_jawaban}</div>
         `;
