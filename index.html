@@ -243,7 +243,6 @@ function initMenu() {
     const container = document.getElementById('menu-container');
     container.innerHTML = ''; 
     const kategoriUnik = [...new Set(databaseSoal.map(s => s.kategori))];
-    
     kategoriUnik.forEach(k => {
         const btn = document.createElement('button');
         btn.className = 'btn-outline';
@@ -251,8 +250,6 @@ function initMenu() {
         btn.onclick = () => startQuiz(k);
         container.appendChild(btn);
     });
-    
-    document.getElementById('btn-all').innerText = `Mulai Semua Topik (${databaseSoal.length} Soal)`;
 }
 
 function startQuiz(k) {
@@ -297,8 +294,9 @@ function renderSoal() {
         container.appendChild(div);
     }
 
-    document.getElementById('btn-prev').style.visibility = indeksSoal === 0 ? 'hidden' : 'visible';
+    document.getElementById('btn-prev').style.display = indeksSoal === 0 ? 'none' : 'block';
     
+    // Perbaikan Logika Tombol
     if (indeksSoal === soalAktif.length - 1) {
         document.getElementById('btn-next').style.display = 'none';
         document.getElementById('btn-lihat-hasil').style.display = 'block';
@@ -315,7 +313,7 @@ function prevQuestion() { if (indeksSoal > 0) { indeksSoal--; renderSoal(); } }
 function showResults() {
     const belum = jawabanUser.filter(j => j === "").length;
     if (belum > 0) {
-        if (!confirm(`Masih ada ${belum} soal belum diisi. Tetap lihat hasil?`)) return;
+        if (!confirm(`Masih ada ${belum} soal belum diisi. Lihat kunci jawaban sekarang?`)) return;
     }
 
     document.getElementById('quiz-screen').style.display = 'none';
